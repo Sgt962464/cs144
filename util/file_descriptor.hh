@@ -18,7 +18,7 @@ class FileDescriptor
     bool closed_ = false;       // Flag indicating whether FDWrapper::fd_ has been closed
     bool non_blocking_ = false; // Flag indicating whether FDWrapper::fd_ is non-blocking
     unsigned read_count_ = 0;   // The number of times FDWrapper::fd_ has been read
-    unsigned write_count_ = 0;  // The numberof times FDWrapper::fd_ has been written
+    unsigned write_count_ = 0;  // The number of times FDWrapper::fd_ has been written
 
     // Construct from a file descriptor number returned by the kernel
     explicit FDWrapper( int fd );

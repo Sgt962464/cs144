@@ -1,5 +1,6 @@
 #pragma once
 
+#include <deque>
 #include <queue>
 #include <stdexcept>
 #include <string>
@@ -12,8 +13,12 @@ class ByteStream
 {
 protected:
   uint64_t capacity_;
+  std::queue<char> queue;
+  uint64_t push_len = 0;
+  uint64_t pop_len = 0;
   // Please add any additional state to the ByteStream here, and not to the Writer and Reader interfaces.
-
+  bool write_state = false; // the state of writer.
+  bool error_state = false; // the state of state;
 public:
   explicit ByteStream( uint64_t capacity );
 

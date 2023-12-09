@@ -23,7 +23,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
   uint64_t str_end;
   uint64_t str_len=first_index+data.size();
   if(!data.empty()){
-    if(str_len<first_unassembled_index||str_len>=first_unacceptable_index){      // the data not store in availble_capacity
+    if(str_len<first_unassembled_index||first_index>=first_unacceptable_index){      // the data not store in availble_capacity
       data="";
     }else{
       str_begin=first_index;

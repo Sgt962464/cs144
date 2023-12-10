@@ -8,8 +8,10 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
 {
   // Your code here.
   //init assemblerBuf and flagBuf
+  
   assembledBuf.resize(output.available_capacity(),0);
   flagBuf.resize(output.available_capacity(),0);
+   
 
   //the last index
   if(is_last_substring){
@@ -61,7 +63,9 @@ uint64_t Reassembler::bytes_pending() const
 {
   // Your code here.
   uint64_t count=0;
-  for(auto i=assembledBuf.begin();i!=assembledBuf.end();i++)
-    count++;
+  for(auto i=flagBuf.begin();i!=flagBuf.end();i++){
+    if(*i==true)
+      count++;
+  }
   return count;
 }

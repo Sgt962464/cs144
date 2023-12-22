@@ -1,7 +1,6 @@
 #pragma once
 
 #include <deque>
-#include <deque>
 #include <stdexcept>
 #include <string>
 #include <string_view>
@@ -20,7 +19,6 @@ protected:
   bool write_state = false; // the state of writer.
   bool error_state = false; // the state of state;
 public:
-
   explicit ByteStream( uint64_t capacity );
 
   // Helper functions (provided) to access the ByteStream's Reader and Writer interfaces

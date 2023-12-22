@@ -7,7 +7,19 @@
 class TCPSender
 {
   Wrap32 isn_;
+  bool is_send_ISN;                   /*the flag of ISN*/
+  bool is_send_FIN;                   /*the flag of FIN*/
   uint64_t initial_RTO_ms_;
+  int cur_RTO_ms;                //current time
+  bool is_set_timer;                  //whether start timer
+  TCPReceiverMessage recMsg;          //the msg of TCPReceiver(ackno,window_size)
+  uint64_t abs_seqno;                 
+  size_t pre_window_size;
+  std::deque<TCPSenderMessage> outstanding_byte;         //send but not ack
+  std::deque<TCPSenderMessage> ready_send_byte;          //ready to send;
+  size_t outstanding_set_bytes;       //the bytes of outstanding set
+  size_t retransmission_count;                   //the count of restransmission
+
 
 public:
   /* Construct TCP sender with given default Retransmission Timeout and possible ISN */

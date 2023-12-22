@@ -7,12 +7,12 @@
 class Reassembler
 {
 protected:
-  uint64_t first_unassembled_index;    
+  uint64_t first_unassembled_index;
   uint64_t first_unacceptable_index;
-  uint64_t end_index;                //the last data index
-   
-  std::deque<char> assembledBuf;     //store the data of ariving earily
-  std::deque<bool> flagBuf;          //the data is effect?
+  uint64_t end_index; // the last data index
+
+  std::deque<char> assembledBuf; // store the data of ariving earily
+  std::deque<bool> flagBuf;      // the data is effect?
 public:
   /*
    * Insert a new substring to be reassembled into a ByteStream.
@@ -38,12 +38,8 @@ public:
 
   // How many bytes are stored in the Reassembler itself?
   uint64_t bytes_pending() const;
- //init Reassembler()
- Reassembler():first_unassembled_index(0)
-                            ,first_unacceptable_index(0)
-                            ,end_index(-1)
-                            ,assembledBuf()
-                            ,flagBuf()
-                            {}
+  // init Reassembler()
+  Reassembler()
+    : first_unassembled_index( 0 ), first_unacceptable_index( 0 ), end_index( -1 ), assembledBuf(), flagBuf()
+  {}
 };
-

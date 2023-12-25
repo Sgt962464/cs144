@@ -10,6 +10,22 @@
 // immediately (from the `recv_frame` method), it stores them for
 // later retrieval. Otherwise, behaves identically to the underlying
 // implementation of NetworkInterface.
+struct route_data{
+  std::optional<Address> next_hop{};
+  size_t interface_num{};
+};
+
+struct hash_pair
+{
+  template<class T1,class T2>
+  size_t operator()(const std::pair<T1,T2> &p) const
+  {
+    auto hash1=std::hash<T1>{}(p.first);
+    auto hash2=std::hash<T2>{}(p.second);
+    return hash1^hash2;
+  }
+};
+
 class AsyncNetworkInterface : public NetworkInterface
 {
   std::queue<InternetDatagram> datagrams_in_ {};
@@ -54,7 +70,7 @@ class Router
 {
   // The router's collection of network interfaces
   std::vector<AsyncNetworkInterface> interfaces_ {};
-
+  std::unordered_map<std::pair<uint32_t,uint8_t>,route_data,hash_pair> route_table{};
 public:
   // Add an interface to the router
   // interface: an already-constructed network interface
